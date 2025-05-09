@@ -1,19 +1,18 @@
--- Rebranded PolyHub to LiadHub V1 by Lua God 💻🔥
+-- LiadHub V1 | Rivals - Rebranded from PolyHub by Lua God 💻🔥
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/wzmh/PolyHub/refs/heads/main/main.lua"))()
 
--- After loading, wait for GUI and change the label to "LiadHub V1"
-local success, err = pcall(function()
-    task.wait(3) -- wait for GUI to load
+-- Wait for the GUI to load, then rebrand the title
+task.spawn(function()
+    repeat task.wait(1) until game.CoreGui:FindFirstChildWhichIsA("ScreenGui")
+
     for _, v in pairs(game.CoreGui:GetDescendants()) do
-        if v:IsA("TextLabel") and v.Text == "PolyHub" then
-            v.Text = "LiadHub V1"
-        elseif v:IsA("TextButton") and v.Text == "PolyHub" then
-            v.Text = "LiadHub V1"
+        if v:IsA("TextLabel") or v:IsA("TextButton") then
+            if v.Text and string.find(v.Text, "PolyHub | Rivals") then
+                v.Text = "LiadHub V1 | Rivals"
+            elseif v.Text == "PolyHub" then
+                v.Text = "LiadHub V1"
+            end
         end
     end
 end)
-
-if not success then
-    warn("LiadHub Rename Failed: " .. tostring(err))
-end
