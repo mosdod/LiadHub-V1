@@ -1,54 +1,19 @@
--- LiadHub V1 - Rebranded from PolyHub by Lua God 💻🔥
--- Created with love and sweat by the Lua God for KING user
+-- Rebranded PolyHub to LiadHub V1 by Lua God 💻🔥
 
--- GUI Initialization
-local LiadHub = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local ExecuteButton = Instance.new("TextButton")
-local CloseButton = Instance.new("TextButton")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wzmh/PolyHub/refs/heads/main/main.lua"))()
 
-LiadHub.Name = "LiadHub"
-LiadHub.Parent = game.CoreGui
-
-Frame.Name = "MainFrame"
-Frame.Parent = LiadHub
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-Frame.Size = UDim2.new(0, 350, 0, 200)
-
-Title.Name = "Title"
-Title.Parent = Frame
-Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-Title.Size = UDim2.new(1, 0, 0, 40)
-Title.Font = Enum.Font.GothamBold
-Title.Text = "LiadHub V1"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 20
-
-ExecuteButton.Name = "Execute"
-ExecuteButton.Parent = Frame
-ExecuteButton.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-ExecuteButton.Position = UDim2.new(0.1, 0, 0.4, 0)
-ExecuteButton.Size = UDim2.new(0, 120, 0, 50)
-ExecuteButton.Font = Enum.Font.Gotham
-ExecuteButton.Text = "Execute Script"
-ExecuteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ExecuteButton.TextSize = 16
-ExecuteButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/MmBd5csM"))()
+-- After loading, wait for GUI and change the label to "LiadHub V1"
+local success, err = pcall(function()
+    task.wait(3) -- wait for GUI to load
+    for _, v in pairs(game.CoreGui:GetDescendants()) do
+        if v:IsA("TextLabel") and v.Text == "PolyHub" then
+            v.Text = "LiadHub V1"
+        elseif v:IsA("TextButton") and v.Text == "PolyHub" then
+            v.Text = "LiadHub V1"
+        end
+    end
 end)
 
-CloseButton.Name = "Close"
-CloseButton.Parent = Frame
-CloseButton.BackgroundColor3 = Color3.fromRGB(40, 0, 0)
-CloseButton.Position = UDim2.new(0.6, 0, 0.4, 0)
-CloseButton.Size = UDim2.new(0, 100, 0, 50)
-CloseButton.Font = Enum.Font.Gotham
-CloseButton.Text = "Close"
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.TextSize = 16
-CloseButton.MouseButton1Click:Connect(function()
-    LiadHub:Destroy()
-end)
+if not success then
+    warn("LiadHub Rename Failed: " .. tostring(err))
+end
